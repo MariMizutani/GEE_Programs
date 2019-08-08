@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
-/* BLOCO 1: DEFINI«’ES: FUN«’ES, PALHETAS DE CORES E CLASSES DE TRANSI«√O */ {}
+/* BLOCO 1: DEFINI√á√ïES: FUN√á√ïES, PALHETAS DE CORES E CLASSES DE TRANSI√á√ÉO */ {}
 ///////////////////////////////////////////////////////////////////////////////
 
-// FunÁ„o para calcular frequencias das classes
-// Para usar: precisa definir a geometria criando uma vari·vel com a geometria deseja (geom) no BLOCO 2
+// Fun√ß√£o para calcular frequencias das classes
+// Para usar: precisa definir a geometria criando uma vari√°vel com a geometria deseja (geom) no BLOCO 2
 function freqM(imagem)
 { 
   return imagem.reduceRegions(
@@ -12,26 +12,26 @@ function freqM(imagem)
   scale: 30});
 }
 
-// FunÁ„o para recategorizar a imagem original nas categorias definidas
+// Fun√ß√£o para recategorizar a imagem original nas categorias definidas
 function recat(z) 
 {
   var transicao=(TransicaoRegiao.select(z)).remap(ClasseOriginal, ClasseCorrigida44, 44).select(['remapped'],['Transicao']);
   return transicao;
 }
 
-// Cria vetor com classes originais e classes pra reclassificaÁ„o considerando:
-// 1: Floresta / 2: N„o floresta / 3: Uso do solo / 4: Hidrografia e nuvem
+// Cria vetor com classes originais e classes pra reclassifica√ß√£o considerando:
+// 1: Floresta / 2: N√£o floresta / 3: Uso do solo / 4: Hidrografia e nuvem
 
-// Lista com as classes de transiÁ„o originais do Mapbiomas
+// Lista com as classes de transi√ß√£o originais do Mapbiomas
   var ClasseOriginal =ee.List(
   [
-   // TRANSI«√O "DE: FLORESTA"
+   // TRANSI√á√ÉO "DE: FLORESTA"
       // "PARA : FLORESTA"
       101, 102, 103, 104, 105, 109, 201, 202, 203, 204,
       205, 209, 301, 302, 303, 304, 305, 309, 401, 402,
       403, 404, 405, 409, 501, 502, 503, 504, 505, 509,
       901, 902, 903, 904, 905, 909,          
-      // "PARA : N√O FLORESTA"
+      // "PARA : N√ÉO FLORESTA"
       110, 111, 113, 122, 123, 125, 129, 132, 210, 211,
       213, 222, 223, 225, 229, 232, 310, 311, 313, 322, 
       323, 325, 329, 332, 410, 411, 413, 422, 423, 425, 
@@ -48,14 +48,14 @@ function recat(z)
       126, 127, 131, 133, 226, 227, 231, 233, 326, 327, 
       331, 333, 426, 427, 431, 433, 526, 527, 531, 533, 
       926, 927, 931, 933,
-    // TRANSI«√O "DE: N√O-FLORESTA"
-      // "PARA : FLORESTA = REGENERA«√O"
+    // TRANSI√á√ÉO "DE: N√ÉO-FLORESTA"
+      // "PARA : FLORESTA = REGENERA√á√ÉO"
       1001, 1002, 1003, 1004, 1005, 1009, 1101, 1102, 1103, 1104,
       1105, 1109, 1301, 1302, 1303, 1304, 1305, 1309, 2201, 2202, 
       2203, 2204, 2205, 2209, 2301, 2302, 2303, 2304, 2305, 2309, 
       2501, 2502, 2503, 2504, 2505, 2509, 2901, 2902, 2903, 2904, 
       2905, 2909, 3201, 3202, 3203, 3204, 3205, 3209,
-      // "PARA : N√O FLORESTA"
+      // "PARA : N√ÉO FLORESTA"
       1010, 1011, 1013, 1022, 1023, 1025, 1029, 1032, 1110, 1111, 
       1113, 1122, 1123, 1125, 1129, 1132, 1310, 1311, 1313, 1322, 
       1323, 1325, 1329, 1332, 2210, 2211, 2213, 2222, 2223, 2225, 
@@ -77,15 +77,15 @@ function recat(z)
       1331, 1333, 2226, 2227, 2231, 2233, 2326, 2327, 2331, 2333, 
       2526, 2527, 2531, 2533, 2926, 2927, 2931, 2933, 3226, 3227, 
       3231, 3233,
-    // TRANSI«√O "DE: USO DO SOLO"
-      // "PARA : FLORESTA = REGENERA«√O"
+    // TRANSI√á√ÉO "DE: USO DO SOLO"
+      // "PARA : FLORESTA = REGENERA√á√ÉO"
       1201, 1202, 1203, 1204, 1205, 1209, 1401, 1402, 1403, 1404, 
       1405, 1409, 1501, 1502, 1503, 1504, 1505, 1509, 1801, 1802, 
       1803, 1804, 1805, 1809, 1901, 1902, 1903, 1904, 1905, 1909, 
       2001, 2002, 2003, 2004, 2005, 2009, 2101, 2102, 2103, 2104, 
       2105, 2109, 2401, 2402, 2403, 2404, 2405, 2409, 3001, 3002, 
       3003, 3004, 3005, 3009,
-      // "PARA : N√O FLORESTA"
+      // "PARA : N√ÉO FLORESTA"
       1210, 1211, 1213, 1222, 1223, 1225, 1229, 1232, 1410, 1411, 
       1413, 1422, 1423, 1425, 1429, 1432, 1510, 1511, 1513, 1522, 
       1523, 1525, 1529, 1532, 1810, 1811, 1813, 1822, 1823, 1825, 
@@ -109,12 +109,12 @@ function recat(z)
       1531, 1533, 1826, 1827, 1831, 1833, 1926, 1927, 1931, 1933, 
       2026, 2027, 2031, 2033, 2126, 2127, 2131, 2133, 2426, 2427, 
       2431, 2433, 3026, 3027, 3031, 3033,
-    // TRANSI«√O "DE: HIDROGRAFIA + NUVEM = OUTROS"
+    // TRANSI√á√ÉO "DE: HIDROGRAFIA + NUVEM = OUTROS"
       // "PARA : FLORESTA"
       2601, 2602, 2603, 2604, 2605, 2609, 2701, 2702, 2703, 2704, 
       2705, 2709, 3101, 3102, 3103, 3104, 3105, 3109, 3301, 3302, 
       3303, 3304, 3305, 3309,
-      // "PARA : N√O-FLORESTA"
+      // "PARA : N√ÉO-FLORESTA"
       2610, 2611, 2613, 2622, 2623, 2625, 2629, 2632, 2710, 2711, 
       2713, 2722, 2723, 2725, 2729, 2732, 3110, 3111, 3113, 3122, 
       3123, 3125, 3128, 3132, 3310, 3311, 3323, 3322, 3323, 3325, 
@@ -129,47 +129,47 @@ function recat(z)
       3131, 3133, 3326, 3327, 3331, 3333,
   ]);
     
-// Lista com as novas classes de transiÁ„o - antes da definiÁ„o de premissas
-// Para usar: descomentar e mudar a chamada dentro da funÁ„o recat no BLOCO 1
+// Lista com as novas classes de transi√ß√£o - antes da defini√ß√£o de premissas
+// Para usar: descomentar e mudar a chamada dentro da fun√ß√£o recat no BLOCO 1
 /*
   var ClasseNova=ee.List.repeat(11,36)       // "DE: FLORESTA" - "PARA FLORESTA" 
-      .cat(ee.List.repeat(12,48))  // "DE: FLORESTA" - "PARA : N√O FLORESTA"                      
+      .cat(ee.List.repeat(12,48))  // "DE: FLORESTA" - "PARA : N√ÉO FLORESTA"                      
       .cat(ee.List.repeat(13,54))  // "DE: FLORESTA" - "PARA : USO DO SOLO"                                      
       .cat(ee.List.repeat(14,24))  // "DE: FLORESTA" - "PARA : HIDROGRAFIA + NUVEM = OUTROS"
-      .cat(ee.List.repeat(21,48))  // "DE: N√O FLORESTA" - "PARA : FLORESTA = REGENERA«√O"
-      .cat(ee.List.repeat(22,64))  // "DE: N√O FLORESTA" - "PARA : N√O FLORESTA"
-      .cat(ee.List.repeat(23,72))  // "DE: N√O FLORESTA" - "PARA : USO DO SOLO"
-      .cat(ee.List.repeat(24,32))  // "DE: N√O FLORESTA" - "PARA : HIDROGRAFIA + NUVEM = OUTROS"
-      .cat(ee.List.repeat(31,54))  // "DE: USO DO SOLO" - "PARA : FLORESTA = REGENERA«√O"
-      .cat(ee.List.repeat(32,72))  // "DE: USO DO SOLO" - "PARA : N√O FLORESTA"        
+      .cat(ee.List.repeat(21,48))  // "DE: N√ÉO FLORESTA" - "PARA : FLORESTA = REGENERA√á√ÉO"
+      .cat(ee.List.repeat(22,64))  // "DE: N√ÉO FLORESTA" - "PARA : N√ÉO FLORESTA"
+      .cat(ee.List.repeat(23,72))  // "DE: N√ÉO FLORESTA" - "PARA : USO DO SOLO"
+      .cat(ee.List.repeat(24,32))  // "DE: N√ÉO FLORESTA" - "PARA : HIDROGRAFIA + NUVEM = OUTROS"
+      .cat(ee.List.repeat(31,54))  // "DE: USO DO SOLO" - "PARA : FLORESTA = REGENERA√á√ÉO"
+      .cat(ee.List.repeat(32,72))  // "DE: USO DO SOLO" - "PARA : N√ÉO FLORESTA"        
       .cat(ee.List.repeat(33,81))  // "DE: USO DO SOLO" - "PARA : USO DO SOLO"
       .cat(ee.List.repeat(34,36))  // "DE: USO DO SOLO" - "PARA : HIDROGRAFIA + NUVEM = OUTROS"    
       .cat(ee.List.repeat(41,24))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : FLORESTA"
-      .cat(ee.List.repeat(42,32))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : N√O FLORESTA"       
+      .cat(ee.List.repeat(42,32))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : N√ÉO FLORESTA"       
       .cat(ee.List.repeat(43,36))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : USO DO SOLO"
       .cat(ee.List.repeat(44,16)); // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : HIDROGRAFIA + NUVEM = OUTROS"   
 */
 
-// Lista com as novas classes de transiÁ„o - apÛs definiÁ„o de premissas
+// Lista com as novas classes de transi√ß√£o - ap√≥s defini√ß√£o de premissas
   var ClasseCorrigida44=ee.List.repeat(11,36)  // "DE: FLORESTA" - "PARA FLORESTA" 
-      .cat(ee.List.repeat(11,48))  // "DE: FLORESTA" - "PARA : N√O FLORESTA": corrigida: "FLORESTA-FLORESTA"
+      .cat(ee.List.repeat(11,48))  // "DE: FLORESTA" - "PARA : N√ÉO FLORESTA": corrigida: "FLORESTA-FLORESTA"
       .cat(ee.List.repeat(13,54))  // "DE: FLORESTA" - "PARA : USO DO SOLO"                                      
       .cat(ee.List.repeat(44,24))  // "DE: FLORESTA" - "PARA : HIDROGRAFIA + NUVEM = OUTROS": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
-      .cat(ee.List.repeat(11,48))  // "DE: N√O FLORESTA" - "PARA : FLORESTA": corrigida: "FLORESTA-FLORESTA"
-      .cat(ee.List.repeat(22,64))  // "DE: N√O FLORESTA" - "PARA : N√O FLORESTA":
-      .cat(ee.List.repeat(23,72))  // "DE: N√O FLORESTA" - "PARA : USO DO SOLO"
-      .cat(ee.List.repeat(44,32))  // "DE: N√O FLORESTA" - "PARA : HIDROGRAFIA + NUVEM = OUTROS": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
-      .cat(ee.List.repeat(31,54))  // "DE: USO DO SOLO" - "PARA : FLORESTA = REGENERA«√O"
-      .cat(ee.List.repeat(32,72))  // "DE: USO DO SOLO" - "PARA : N√O FLORESTA"        
+      .cat(ee.List.repeat(11,48))  // "DE: N√ÉO FLORESTA" - "PARA : FLORESTA": corrigida: "FLORESTA-FLORESTA"
+      .cat(ee.List.repeat(22,64))  // "DE: N√ÉO FLORESTA" - "PARA : N√ÉO FLORESTA":
+      .cat(ee.List.repeat(23,72))  // "DE: N√ÉO FLORESTA" - "PARA : USO DO SOLO"
+      .cat(ee.List.repeat(44,32))  // "DE: N√ÉO FLORESTA" - "PARA : HIDROGRAFIA + NUVEM = OUTROS": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
+      .cat(ee.List.repeat(31,54))  // "DE: USO DO SOLO" - "PARA : FLORESTA = REGENERA√á√ÉO"
+      .cat(ee.List.repeat(32,72))  // "DE: USO DO SOLO" - "PARA : N√ÉO FLORESTA"        
       .cat(ee.List.repeat(33,81))  // "DE: USO DO SOLO" - "PARA : USO DO SOLO"
       .cat(ee.List.repeat(44,36))  // "DE: USO DO SOLO" - "PARA : HIDROGRAFIA + NUVEM = OUTROS": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
       .cat(ee.List.repeat(44,24))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : FLORESTA": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
-      .cat(ee.List.repeat(44,32))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : N√O FLORESTA": corrigida: "HIDROGRAFIA-HIDROGRAFIA" 
+      .cat(ee.List.repeat(44,32))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : N√ÉO FLORESTA": corrigida: "HIDROGRAFIA-HIDROGRAFIA" 
       .cat(ee.List.repeat(44,36))  // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : USO DO SOLO": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
       .cat(ee.List.repeat(44,16)); // "DE: HIDROGRAFIA + NUVEM = OUTROS" - "PARA : HIDROGRAFIA + NUVEM = OUTROS": corrigida: "HIDROGRAFIA-HIDROGRAFIA"
 
 ///////////////////////////////////////////////////////////////////////////////
-/* BLOCO 2: DEFINI«√O DE GEOMETRIAS                                       */ {}
+/* BLOCO 2: DEFINI√á√ÉO DE GEOMETRIAS                                       */ {}
 ///////////////////////////////////////////////////////////////////////////////
 
 // geometria AI BR163 - comentar o passo anterior para gerar a nova geometria
@@ -178,19 +178,19 @@ var geom=ee.FeatureCollection('ft:1SP7cTzc8NRWGtdbqYC4CP0RRvFETaFilERk2DxnC');
 //print(desgeom,'desgeom');
 //Map.addLayer(geom,'geom');
 
-// Importando imagem classificada e transiÁ„o do MapBiomas - deletar depois de testar
+// Importando imagem classificada e transi√ß√£o do MapBiomas - deletar depois de testar
 var TransicaoRegiao=ee.Image("projects/mapbiomas-workspace/public/collection3_1/mapbiomas_collection31_transitions_v1").clip(geom);
 //print(TransicaoRegiao,'TransicaoRegiao');
 
 ///////////////////////////////////////////////////////////////////////////////
-/* BLOCO 3: PAR¬METROS PARA PROCESSAMENTO                                */ {}
+/* BLOCO 3: PAR√ÇMETROS PARA PROCESSAMENTO                                */ {}
 ///////////////////////////////////////////////////////////////////////////////
 
-// Par‚metros: anos a serem utilizados na an·lise, geometria utilizada para c·lculo de freq
-// Os par‚metros que precisam de intervenÁ„o s„o:
-// anoInicio: ano inicial da primeira transiÁ„o a ser considerada no c·lculo
-// ano Fim: ano da ˙ltima transiÁ„o a ser considerada
-// MM: quantidade de transiÁıes consideradas para calcular a probabilidade mÛvel
+// Par√¢metros: anos a serem utilizados na an√°lise, geometria utilizada para c√°lculo de freq
+// Os par√¢metros que precisam de interven√ß√£o s√£o:
+// anoInicio: ano inicial da primeira transi√ß√£o a ser considerada no c√°lculo
+// anoFim: ano da √∫ltima transi√ß√£o a ser considerada
+// MM: quantidade de transi√ß√µes consideradas para calcular a probabilidade m√≥vel
 var anoInicio=2014;
 var anoFim=2016; 
 var MM=1;
@@ -199,7 +199,7 @@ var Parametros = '';
     Parametros = Parametros.concat('Ano Inicio:', anoInicio,'; AnoFim:', anoFim, '; MM:', MM);
 print(Parametros);
 
-// CriaÁ„o de lista com os nomes das bandas de transiÁıes do ano inicial.
+// Cria√ß√£o de lista com os nomes das bandas de transi√ß√µes do ano inicial.
 var transicoes = [];
 var anoAux=anoInicio;
 
@@ -211,19 +211,19 @@ for(var i = anoAux; i < anoFim; i++)
   }
 
 ///////////////////////////////////////////////////////////////////////////////
-/* BLOCO 4: TRANSI«’ES E PROBABILIDADES                                   */ {}
+/* BLOCO 4: TRANSI√á√ïES E PROBABILIDADES                                   */ {}
 ///////////////////////////////////////////////////////////////////////////////
 
-// ReclassificaÁ„o das classes utilizando: 
-// ..funÁ„o recat (Bloco1) e lista:transicoes (Bloco2)
-// C·lculo das freqs de transiÁıes utilizando: 
-// ..funÁ„o freqM (Bloco1)
+// Reclassifica√ß√£o das classes utilizando: 
+// ..fun√ß√£o recat (Bloco1) e lista:transicoes (Bloco2)
+// C√°lculo das freqs de transi√ß√µes utilizando: 
+// ..fun√ß√£o freqM (Bloco1)
 var ImagensRecat = transicoes.map(recat);
 var histo = ImagensRecat.map(freqM);
 print(histo,'histo');
 
-// ExtraÁ„o das frequÍncias e inputaÁÁ„o em dicion·rio para posterior uso
-// C·lculo da probabilidade de floresta-Uso (P13)
+// Extra√ß√£o das frequ√™ncias e inputa√ß√ß√£o em dicion√°rio para posterior uso
+// C√°lculo da probabilidade de floresta-Uso (P13)
 var n=anoFim - anoInicio;
 var tempfreq=[];
 var tempfreq13=[];
@@ -231,20 +231,20 @@ var tempfreq1=[];
 
 for (var i = 0; i < n; i++)
 {
-  //  InputaÁ„o em dicionario //
+  //  Inputa√ß√£o em dicionario //
   var aux = ee.Dictionary(ee.List(histo[i].reduceColumns(ee.Reducer.toList(), ['histogram']).get('list')).get(0));
   tempfreq.push(aux);
 
-  // CriaÁ„o de array com quantidade de transicao para usar na validaÁ„o floresta-Uso (F13) //
+  // Cria√ß√£o de array com quantidade de transicao para usar na valida√ß√£o floresta-Uso (F13) //
   var F_13=ee.Number(aux.get('13'));
   tempfreq13.push(F_13);
 
-  // CriaÁ„o de array com quantidade total de floresta na origem //
+  // Cria√ß√£o de array com quantidade total de floresta na origem //
   var F_1=ee.Number(aux.get('11')).add(ee.Number(aux.get('13')));
   tempfreq1.push(F_1);
 }
 
-// Define arrays que receber„o os valores acumulados na transiÁ„o mÛvel (MM)
+// Define arrays que receber√£o os valores acumulados na transi√ß√£o m√≥vel (MM)
 var soma13_MM=[];
 var soma1_MM=[];
 var tempP13=[];
@@ -268,7 +268,7 @@ do
   tempP13.push(P_13);
 } while (i < n-MM);
 
-// Renomeando as transiÁıes para posteriormente reconhecÍ-las
+// Renomeando as transi√ß√µes para posteriormente reconhec√™-las
 /*
 var FreqsTransicao = {};
 anoAux=anoInicio;
@@ -281,9 +281,9 @@ for(var key in tempfreq)
 }
 */
 
-// Renomeando as probabilidades de transiÁ„o para podermos reconhecÍ-las posteriormente
-// O nome final considera o ˙ltimo ano para qual È realizada uma transiÁ„o..
-// .. que È igual o ano que vamos estimar
+// Renomeando as probabilidades de transi√ß√£o para podermos reconhec√™-las posteriormente
+// O nome final considera o √∫ltimo ano para qual √© realizada uma transi√ß√£o..
+// .. que √© igual o ano que vamos estimar
 var anoAux=anoInicio+MM;
 var P13 = {};
 
@@ -295,14 +295,14 @@ for(var key in tempP13)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/* BLOCO 5: ESTIMATIVA E VALIDA«√O DO DESMATAMENTO NO ANO SEGUINTE        */ {}
+/* BLOCO 5: ESTIMATIVA E VALIDA√á√ÉO DO DESMATAMENTO NO ANO SEGUINTE        */ {}
 ///////////////////////////////////////////////////////////////////////////////
 
-// Separa da listas: total classe1 e total de transiÁ„o 13 por municÌpios 
+// Separa da listas: total classe1 e total de transi√ß√£o 13 por munic√≠pios 
 // .. utilizando: lista:tempfreq1 e lista: tempfre13
-// Essas listas ser„o utilizada como estado inicial para calcular estimativa
-// A nomenclatura utilizada sempre ser· a partir do anoInicio+MM (primeira estimativa)
-// Exemplo: MM2/transiÁıes:(2010_2011 e 2011_2012)/ Estimado ser· 2012 (anoInicio+MM)
+// Essas listas ser√£o utilizada como estado inicial para calcular estimativa
+// A nomenclatura utilizada sempre ser√° a partir do anoInicio+MM (primeira estimativa)
+// Exemplo: MM2/transi√ß√µes:(2010_2011 e 2011_2012)/ Estimado ser√° 2012 (anoInicio+MM)
 var freq1=[];
 var tempValida13=[];
 
@@ -312,7 +312,7 @@ for (var i = MM; i < n; i++)
   var temp1 = tempfreq1[i];
   freq1.push(temp1);
   
-  // Transicao 13 realizada para validaÁ„o //
+  // Transicao 13 realizada para valida√ß√£o //
   var temp13 = tempfreq13[i];
   tempValida13.push(temp13);
 }
@@ -346,14 +346,14 @@ for (var i = anoAux; i < anoFim;i++)
   var est13Km=est13.multiply(30).multiply(30).divide(1000);
   Estim13Km.push(est13Km);
 
-  // c·lculo de percentual de erro
+  // c√°lculo de percentual de erro
   var er13=est13.divide(tempValida13[anoMM]).subtract(1).multiply(100);
   Err13.push(er13);
 
   anoMM=++anoMM;
 }
 
-// Renomeando os anos para facilitar a compreens„o 
+// Renomeando os anos para facilitar a compreens√£o 
 var Estimativas13 = {};
 var Estimativas13Km = {};
 var Valida13 = {};

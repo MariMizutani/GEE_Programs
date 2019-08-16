@@ -1,0 +1,84 @@
+###############################################################################
+# Código para avaliação preliminar de dados do MAPBIOMAS                      #
+# Dissertação de mestrado de Mariana Mizutani Ribeiro                         #
+# Data: 16/08/2019                                                            #
+###############################################################################
+
+# Definindo pasta onde ficarao salvas as analises
+setwd("<CAMINHO PASTA PROJETO>")
+
+# Definicao de pacotes necessarios
+require(readr)
+require(magrittr)
+require(dplyr)
+require(raster)
+require(rgdal)
+require(gdalUtils)
+require(tiff)
+require(rasterImage)
+require(sp)
+require(grDevices)
+require(sf)
+
+# Lendo as bases de um município: Medicilândia (exemplo)
+# Exemplo: aoimpbio2012<-raster('C:/Users/Mariana/Medicilandia2012.tif')
+
+#Medicilandia
+aoimpbio2012<-raster('<CAMINHO ONDE ESTÃO SALVOS OS ARQUIVOS DO MAPBIOMAS>/Medicilandia2012.tif')
+aoimpbio2014<-raster('<CAMINHO ONDE ESTÃO SALVOS OS ARQUIVOS DO MAPBIOMAS>/Medicilandia2014.tif')
+
+# Verificar a dimensao dos arquivos
+#dim(aoi2012)
+#dim(aoi2014)
+
+# Plota imagens
+#plot(aoi2012)
+#plot(aoi2014)
+
+# Categorizacao da base 2012 
+start1=Sys.time()
+basempbio2012<-aoimpbio2012
+basempbio2012[aoimpbio2012 == 0]<-NA #Nao se aplica
+basempbio2012[aoimpbio2012 %in% c(1,2,3,4,5,9)]<-2 #floresta
+basempbio2012[aoimpbio2012 %in% c(10,11,12,13,22,23,25,32)]<-3  #nao floresta
+basempbio2012[aoimpbio2012 %in% c(14,15,18,19,20,21,24,29,30)]<-4 #uso
+basempbio2012[aoimpbio2012 %in% c(26,31,33)]<-5 #hidrografia
+basempbio2012[aoimpbio2012==27]<-6 #nuvem
+end1=Sys.time()
+tempo2012=end1-start1
+
+# Categorizacao da base 2014
+start=Sys.time()
+basempbio2014<-aoimpbio2014
+basempbio2014[aoimpbio2014 == 0]<-NA #Nao se aplica
+basempbio2014[aoimpbio2014 %in% c(1,2,3,4,5,9)]<-2 #floresta
+basempbio2014[aoimpbio2014 %in% c(10,11,12,13,22,23,25,32)]<-3 #nao floresta
+basempbio2014[aoimpbio2014 %in% c(14,15,18,19,20,21,24,29,30)]<-4 #uso
+basempbio2014[aoimpbio2014 %in% c(26,31,33)]<-5 #hidrografia
+basempbio2014[aoimpbio2014==27]<-6 #nuvem
+end=Sys.time()
+tempo2014=end-start
+
+# Verificar se dimensões são iguais: antes e depois da categorização
+#dim(basempbio2012)
+#dim(basempbio2014)
+
+# Calcula frequencias
+freq(basempbio2012)
+freq(basempbio2014)
+
+# Plota mapas
+#plot(basempbio2014, main="2012")
+#plot(basempbio2014, main="2014")
+
+# Empilhando as bases 2012 e 2014 para calcular crosstabs
+basestack<-stack(basempbio2012,basempbio2014)
+tab1214<-crosstab(basestack,useNA=FALSE)
+tab1214
+
+# Escreve os tempos
+end3 <- Sys.time() # fim da contagem de tempo
+tempototal <- end3 - start1
+tempo2012
+tempo2014
+tempototal
